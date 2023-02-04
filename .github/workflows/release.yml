@@ -1,0 +1,17 @@
+name: Release GitFlow
+
+on:
+  workflow_dispatch:
+    branches:
+      - develop
+
+jobs:
+  release:
+    name: Release GitFlow
+    steps:
+      - uses: actions/gitflow-release-action@v1
+        with:
+          command: start_finish
+          tag: 1.0.0
+          main_branch: master
+          develop_branch: develop
