@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Release GitFlow
     steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: HDBandit/gitflow-release-action@1.0.2
         with:
           command: start_finish
