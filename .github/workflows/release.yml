@@ -2,6 +2,10 @@ name: Release GitFlow
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag'
+        required: true
     branches:
       - develop
 
@@ -13,8 +17,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: HDBandit/gitflow-release-action@1.0.6
+      - uses: HDBandit/gitflow-release-action@v1.0.7
         with:
           command: start_finish
-          tag: 1.1.0
+          tag: ${{ inputs.tag }}
           skip_empty_releases: true
