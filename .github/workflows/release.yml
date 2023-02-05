@@ -24,7 +24,7 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ steps.get_workflow_token.outputs.token }}
-      - uses: HDBandit/gitflow-release-action@v1.0.19
+      - uses: HDBandit/gitflow-release-action@v1.0.21
         id: release
         with:
           command: start_finish
