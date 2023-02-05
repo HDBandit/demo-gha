@@ -17,8 +17,13 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: HDBandit/gitflow-release-action@v1.0.17
+      - uses: HDBandit/gitflow-release-action@v1.0.18
+        id: release
         with:
           command: start_finish
           tag: ${{ inputs.tag }}
           allow_empty_releases: false
+      - name: Print result data
+        run: |
+          echo "result: ${{ steps.release.outputs.result }}"
+          echo "commits: ${{ steps.release.outputs.commits }}"
