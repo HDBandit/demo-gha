@@ -22,7 +22,7 @@ jobs:
         with:
           command: start_finish
           tag: ${{ inputs.tag }}
-          allow_empty_releases: true
+          allow_empty_releases: false
       - name: Print result data
         run: |
           echo "result: ${{ steps.release.outputs.result }}"
