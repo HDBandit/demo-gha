@@ -24,11 +24,13 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ steps.get_workflow_token.outputs.token }}
-      - uses: HDBandit/gitflow-release-action@v1.0.21
+      - uses: HDBandit/gitflow-release-action@v1.0.22
         id: release
         with:
           command: start_finish
           tag: ${{ inputs.tag }}
+          git_user: ${{ secrets.GIT_USER_BRANCH_PROTECTION_JUMPER }}
+          git_email: ${{ secrets.GIT_EMAIL_BRANCH_PROTECTION_JUMPER }}
           allow_empty_releases: true
       - name: Print result data
         run: |
