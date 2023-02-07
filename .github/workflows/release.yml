@@ -24,7 +24,7 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ steps.get_workflow_token.outputs.token }}
-      - uses: HDBandit/gitflow-release-action@v1.0.22
+      - uses: HDBandit/gitflow-release-action@v2.0.1
         id: release
         with:
           command: start_finish
@@ -32,6 +32,7 @@ jobs:
           git_user: ${{ secrets.GIT_USER_BRANCH_PROTECTION_JUMPER }}
           git_email: ${{ secrets.GIT_EMAIL_BRANCH_PROTECTION_JUMPER }}
           allow_empty_releases: true
+          ignore_commits_from_author: bot
       - name: Print result data
         run: |
           echo "result: ${{ steps.release.outputs.result }}"
