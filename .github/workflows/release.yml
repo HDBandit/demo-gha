@@ -31,7 +31,7 @@ jobs:
           tag: ${{ inputs.tag }}
           git_user: ${{ secrets.GIT_USER_BRANCH_PROTECTION_JUMPER }}
           git_email: ${{ secrets.GIT_EMAIL_BRANCH_PROTECTION_JUMPER }}
-          allow_empty_releases: true
+          allow_empty_releases: false
           ignore_commits_from_author: gerard.vico@gmail.com
       - name: Print result data
         run: |
