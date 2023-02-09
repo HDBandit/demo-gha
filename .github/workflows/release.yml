@@ -1,0 +1,39 @@
+name: Release GitFlow
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag'
+        required: true
+    branches:
+      - develop
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    name: Release GitFlow
+    steps:
+      - name: Get Token
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v1
+        with:
+          application_id: ${{ secrets.APPLICATION_ID }}
+          application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ steps.get_workflow_token.outputs.token }}
+      - uses: HDBandit/gitflow-release-action@v2.7.0
+        id: release
+        with:
+          command: start_finish
+          tag: ${{ inputs.tag }}
+          git_user: ${{ secrets.GIT_USER_BRANCH_PROTECTION_JUMPER }}
+          git_email: ${{ secrets.GIT_EMAIL_BRANCH_PROTECTION_JUMPER }}
+          allow_empty_releases: false
+          ignore_commits_from_author: gerard.vico@gmail.com
+      - name: Print result data
+        run: |
+          echo "result: ${{ steps.release.outputs.result }}"
+          echo "commits: ${{ steps.release.outputs.commits }}"
